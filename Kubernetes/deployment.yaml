@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: zomato
+  name: zomato-app
   labels:
     app: zomato
 spec:
@@ -15,7 +15,14 @@ spec:
         app: zomato
     spec:
       containers:
-      - name: zomato
-        image: kastrov/zomato:latest
-        ports:
-        - containerPort: 3000
+        - name: zomato-container
+          image: rutikesh1907/zomato:latest   # 👈 your Docker image
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "300m"
+              memory: "256Mi"
